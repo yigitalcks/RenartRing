@@ -1,10 +1,10 @@
-import type { Ring, Rings } from '../types/product';
+import type { Rings } from '../types/product';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const fetchRings = async (page: number): Promise<Rings> => {
 
-  const url = `${API_BASE_URL}/rings?page=${page}`;
+  const url = `https://${API_BASE_URL}/rings?page=${page}`;
 
   try {
     const response = await fetch(url);
