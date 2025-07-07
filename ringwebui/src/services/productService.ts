@@ -4,7 +4,7 @@ const API_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchRings = async (page: number): Promise<Rings> => {
 
-  const url = `${API_BASE_URL}/rings?page=${page}`;
+  const url = `${API_BASE_URL}/api/rings?page=${page}`;
 
   try {
     const response = await fetch(url);
