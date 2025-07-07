@@ -11,7 +11,7 @@ const ProductList: React.FC = () => {
   const [page, setPage] = useState(1);
   const fetchedPages = useRef<Set<number>>(new Set());
   const [loading, setLoading] = useState(true);
-  const [hasMore, setHasMore] = useState(true);
+  const [ResHasMore, setResHasMore] = useState(true);
 
   useEffect(() => {
     if (fetchedPages.current.has(page)) {
@@ -27,7 +27,7 @@ const ProductList: React.FC = () => {
       }
 
       fetchedPages.current.add(page);
-      setHasMore(response.pagination.hasNextPage);
+      setResHasMore(response.pagination.hasNextPage);
       setLoading(false);
     });
   }, [page]);
@@ -40,10 +40,12 @@ const ProductList: React.FC = () => {
 
   const handlePrev = () => {
     setPage(prev => prev - 1);
-    setHasMore(true);
   };
 
-  const visibleProducts = allProducts.slice((page - 1) * pageSize, page * pageSize);
+  const startIndex = (page - 1) * pageSize;
+  const visibleProducts = allProducts.slice(startIndex, startIndex + pageSize);
+
+  const hasMore = ResHasMore || (page * pageSize) < allProducts.length;
 
   return (
     <div className="product-carousel-container">

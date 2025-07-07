@@ -7,7 +7,7 @@ body {
 }
 
 .product-carousel-container {
-  max-width: 1400px; /* Konteyner genişliği (4 kart + oklar + boşluklar) */
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
 }

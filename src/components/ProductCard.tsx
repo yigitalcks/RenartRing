@@ -47,4 +47,4 @@ function ProductCard({product}: {product: Ring}){
   );
 }
 
-export default ProductCard;
+export default React.memo(ProductCard);
