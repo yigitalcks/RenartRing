@@ -11,7 +11,7 @@ using RenartRing.Data;
 namespace RenartRing.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250705124958_InitialCreate")]
+    [Migration("20250707204942_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
