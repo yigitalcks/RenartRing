@@ -1,0 +1,6 @@
+services:
+  linkshortener:
+    image: renartring
+    build:
+      context: .
+      dockerfile: RenartRing/Dockerfile

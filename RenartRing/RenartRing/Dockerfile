@@ -7,19 +7,14 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["RenartRing.csproj", "RenartRing/"]
-WORKDIR "/src/RenartRing"
-RUN dotnet restore "./RenartRing.csproj"
-
-WORKDIR /src
+COPY ["RenartRing/RenartRing.csproj", "RenartRing/"]
+RUN dotnet restore "RenartRing/RenartRing.csproj"
 COPY . .
-
 WORKDIR "/src/RenartRing"
 RUN dotnet build "./RenartRing.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-WORKDIR "/src/RenartRing"
 RUN dotnet publish "./RenartRing.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
