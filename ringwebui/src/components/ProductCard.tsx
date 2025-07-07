@@ -10,12 +10,10 @@ const colorDisplayNames: Record<ColorKey, string> = {
   white: 'White Gold',
 };
 
-const GOLD_PRICE_PER_GRAM = 123.45; 
-
-function ProductCard({product}: {product: Ring}){
+function ProductCard({product, goldPrice}: {product: Ring, goldPrice: number}){
   const [selectedColor, setSelectedColor] = useState<ColorKey>('white');
 
-  const calculatedPrice = product.weight * GOLD_PRICE_PER_GRAM;
+  const calculatedPrice = product.weight * goldPrice;
   const ratingOutOfFive = product.popularityScore * 5;
 
   return (
