@@ -5,14 +5,18 @@ public class GoldPriceService : IGoldPriceService
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<GoldPriceService> _logger;
-    private GoldPriceDto _currentGoldPrice; 
+    private readonly IConfiguration _configuration;
+    private GoldPriceDto _currentGoldPrice;
+
+    private const decimal OunceToGram = 28.3495231m;
     
     private static readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
     
-    public GoldPriceService(IHttpClientFactory httpClientFactory, ILogger<GoldPriceService> logger)
+    public GoldPriceService(IHttpClientFactory httpClientFactory, ILogger<GoldPriceService> logger, IConfiguration configuration)
     {
         _httpClientFactory = httpClientFactory;
         _logger = logger;
+        _configuration = configuration;
     }
     
     public async Task<GoldPriceDto> GetCurrentGoldPriceAsync()
@@ -30,13 +34,18 @@ public class GoldPriceService : IGoldPriceService
         try
         {
             var client = _httpClientFactory.CreateClient("GoldApiClient");
-            var response = await client.GetFromJsonAsync<ExternalGoldPrice>("api/XAU/USD");
+            
+            var goldApiSettings = _configuration.GetSection("GoldApiSettings");
+            var apiKey = goldApiSettings["ApiKey"];
+            var url = $"v1/latest?api_key={apiKey}&base=USD&currencies=XAU";
+            
+            var response = await client.GetFromJsonAsync<ExternalGoldPrice>(url);
 
             if (response != null)
             {
                 _currentGoldPrice = new GoldPriceDto
                 {
-                    Price = response.PriceGram24k,
+                    Price = response.PriceOunce24k / OunceToGram,
                     LastUpdatedUtc = DateTimeOffset.FromUnixTimeSeconds(response.Timestamp).UtcDateTime
                 };
                 _logger.LogInformation(

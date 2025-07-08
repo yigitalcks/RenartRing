@@ -31,7 +31,6 @@ var goldApiSettings = builder.Configuration.GetSection("GoldApiSettings");
 builder.Services.AddHttpClient("GoldApiClient", client =>
 {
     client.BaseAddress = new Uri(goldApiSettings["BaseUrl"]);
-    client.DefaultRequestHeaders.Add("x-access-token", goldApiSettings["ApiKey"]);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 

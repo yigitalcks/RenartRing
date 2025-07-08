@@ -10,8 +10,8 @@ public class GoldPriceDto
 
 public class ExternalGoldPrice
 {
-    [JsonPropertyName("price_gram_24k")]
-    public decimal PriceGram24k { get; set; }
+    [JsonPropertyName("USDXAU")]
+    public decimal PriceOunce24k { get; set; }
     [JsonPropertyName("timestamp")]
     public long Timestamp { get; set; }
 }
