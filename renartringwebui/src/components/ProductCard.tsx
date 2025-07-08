@@ -11,7 +11,7 @@ const colorDisplayNames: Record<ColorKey, string> = {
 };
 
 function ProductCard({product, goldPrice}: {product: Ring, goldPrice: number}){
-  const [selectedColor, setSelectedColor] = useState<ColorKey>('white');
+  const [selectedColor, setSelectedColor] = useState<ColorKey>('yellow');
 
   const calculatedPrice = product.weight * goldPrice;
   const ratingOutOfFive = product.popularityScore * 5;

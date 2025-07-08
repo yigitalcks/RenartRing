@@ -1,7 +1,6 @@
 import type { Rings } from '../types/product';
 
-//const API_BASE_URL = import.meta.env.VITE_BASE_URL;
-const API_BASE_URL = "https://renartring-production.up.railway.app";
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchRings = async (page: number): Promise<Rings> => {
 
