@@ -6,79 +6,31 @@ body {
   color: #333;
 }
 
-/* Horizontal scroll container */
-.product-horizontal-container {
+/* Main container */
+.product-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
 }
 
-.product-horizontal-container h1 {
+.product-container h1 {
   text-align: center;
   margin-bottom: 30px;
   color: #333;
   font-size: 2.5rem;
 }
 
-/* Horizontal scroll wrapper with buttons */
-.horizontal-scroll-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-/* Scroll buttons */
-.scroll-button {
-  background-color: #fff;
-  border: 2px solid #ddd;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-}
-
-.scroll-button:hover {
-  background-color: #f8f9fa;
-  border-color: #007bff;
-  color: #007bff;
-  transform: scale(1.05);
-}
-
-.scroll-button:active {
-  transform: scale(0.95);
-}
-
-/* Horizontal scrolling container */
-.product-horizontal-scroll {
-  display: flex;
+/* Product grid layout */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  padding: 10px 0;
-  flex: 1;
-  /* Hide scrollbar but keep functionality */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  margin-bottom: 40px;
 }
 
-.product-horizontal-scroll::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
-
-/* Individual product card container in horizontal layout */
-.product-card-horizontal {
-  flex: 0 0 280px;
-  height: auto;
+/* Individual product item container */
+.product-item {
+  width: 100%;
 }
 
 /* Product card styles */
@@ -199,74 +151,74 @@ body {
 .rating-text {
   font-size: 0.85rem;
   color: #666;
-  font-weight: 500;
 }
 
-/* Skeleton styles */
+/* Skeleton loading styles */
 .skeleton-card {
-  pointer-events: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .skeleton-shimmer {
+  animation: shimmer 1.5s ease-in-out infinite;
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
 }
 
 .skeleton-image {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 4px;
+  padding-top: 100%;
+  background-color: #f0f0f0;
+  position: relative;
 }
 
 .skeleton-line {
   height: 16px;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  background-color: #f0f0f0;
   border-radius: 4px;
-  margin: 4px 0;
+  margin: 8px 0;
 }
 
 .skeleton-title {
-  width: 80%;
   height: 20px;
+  width: 80%;
+  margin: 15px auto 10px;
 }
 
 .skeleton-price {
-  width: 60%;
   height: 18px;
+  width: 60%;
+  margin: 10px auto;
 }
 
 .skeleton-color-name {
-  width: 70%;
   height: 14px;
+  width: 40%;
+  margin: 10px auto 5px;
 }
 
 .skeleton-color-icon {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  background-color: #f0f0f0;
+  margin: 5px;
+  display: inline-block;
 }
 
 .skeleton-stars {
   display: flex;
+  justify-content: center;
   gap: 2px;
-  margin-top: 5px;
+  margin: 10px 0 15px;
 }
 
 .skeleton-star {
   width: 16px;
   height: 16px;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  background-color: #f0f0f0;
   border-radius: 2px;
 }
 
@@ -279,95 +231,55 @@ body {
   }
 }
 
-/* Horizontal end indicator */
-.horizontal-end-indicator {
-  flex: 0 0 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* End message */
+.end-message {
   text-align: center;
-  padding: 20px;
+  padding: 40px 20px;
   color: #666;
   font-size: 1.1rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-  height: 350px; /* Match approximate card height */
 }
 
 /* No products message */
 .no-products {
   text-align: center;
-  padding: 40px 20px;
-  background-color: #fff3cd;
-  border-radius: 8px;
-  border: 1px solid #ffeaa7;
-  color: #856404;
-  font-size: 1.1rem;
-  margin-top: 20px;
+  padding: 60px 20px;
+  color: #666;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+.no-products p {
+  font-size: 1.2rem;
+  margin: 0;
 }
 
-/* Responsive design for mobile */
+/* Responsive design */
 @media (max-width: 768px) {
-  .product-horizontal-container {
+  .product-container {
     padding: 15px;
   }
-  
-  .product-horizontal-container h1 {
+
+  .product-container h1 {
     font-size: 2rem;
     margin-bottom: 20px;
   }
-  
-  .horizontal-scroll-wrapper {
-    gap: 10px;
-  }
-  
-  .scroll-button {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-  
-  .product-card-horizontal {
-    flex: 0 0 250px;
-  }
-  
-  .product-horizontal-scroll {
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 15px;
   }
 }
 
 @media (max-width: 480px) {
-  .product-horizontal-container {
+  .product-container {
     padding: 10px;
   }
-  
-  .horizontal-scroll-wrapper {
-    gap: 8px;
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
   }
-  
-  .scroll-button {
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
-  }
-  
-  .product-card-horizontal {
-    flex: 0 0 220px;
-  }
-  
-  .product-horizontal-scroll {
-    gap: 12px;
-  }
-  
-  .horizontal-end-indicator {
-    flex: 0 0 150px;
-    height: 300px;
+
+  .end-message {
+    padding: 30px 15px;
     font-size: 1rem;
   }
 }

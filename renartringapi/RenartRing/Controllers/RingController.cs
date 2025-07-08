@@ -28,12 +28,24 @@ public class RingController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Ring>>> GetRings([FromQuery] int page = 1)
+    public async Task<ActionResult<List<Ring>>> GetRings(
+        int page = 1,
+        decimal? minPrice = null,
+        decimal? maxPrice = null)
     {
         if (page < 1) 
             page = 1;
+
+        RingsDTO rings;
+        if (minPrice.HasValue && maxPrice.HasValue)
+        {
+            rings = await _service.GetRingsByPriceRangeAsync(minPrice.Value, maxPrice.Value, page);
+        }
+        else
+        {
+            rings = await _service.GetRingsAsync(page);
+        }
         
-        var rings = await _service.GetRingsAsync(page);
         return Ok(rings);
     }
 

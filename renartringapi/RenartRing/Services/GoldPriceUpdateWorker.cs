@@ -19,7 +19,8 @@ public class GoldPriceUpdateWorker : BackgroundService
             
             await _goldPriceService.UpdateGoldPriceAsync();
             
-            await Task.Delay(TimeSpan.FromMinutes(60), stoppingToken);
+            // Development purposes
+            await Task.Delay(TimeSpan.FromMinutes(240), stoppingToken);
         }
     }
 }

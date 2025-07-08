@@ -27,7 +27,7 @@ function ProductCard({product, goldPrice}: {product: Ring, goldPrice: number}){
       </div>
       <div className="product-info">
         <h3 className="product-name">{product.name}</h3>
-        <p className="product-price">${calculatedPrice.toFixed(2)} USD</p>
+        <p className="product-price">${calculatedPrice.toFixed(2)}</p>
         <div className="color-selector">
           {(Object.keys(product.images) as ColorKey[]).map(color => (
             <button
