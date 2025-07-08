@@ -29,14 +29,16 @@ function ProductCard({product, goldPrice}: {product: Ring, goldPrice: number}){
         <h3 className="product-name">{product.name}</h3>
         <p className="product-price">${calculatedPrice.toFixed(2)}</p>
         <div className="color-selector">
-          {(Object.keys(product.images) as ColorKey[]).map(color => (
-            <button
-              key={color}
-              className={`color-icon ${color} ${selectedColor === color ? 'selected' : ''}`}
-              onClick={() => setSelectedColor(color)}
-              aria-label={`Select ${color}`}
-            />
-          ))}
+          {(['yellow', 'white', 'rose'] as const).map(color => 
+            product.images[color] && (
+              <button
+                key={color}
+                className={`color-icon ${color} ${selectedColor === color ? 'selected' : ''}`}
+                onClick={() => setSelectedColor(color)}
+                aria-label={`Select ${color}`}
+              />
+            )
+          )}
         </div>
         <p className="color-name">{colorDisplayNames[selectedColor]}</p>
         <StarRating rating={ratingOutOfFive} />
