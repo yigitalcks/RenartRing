@@ -10,8 +10,17 @@ public class GoldPriceDto
 
 public class ExternalGoldPrice
 {
-    [JsonPropertyName("USDXAU")]
-    public decimal PriceOunce24k { get; set; }
+    [JsonPropertyName("rates")]
+    public Rates Rates { get; set; }
     [JsonPropertyName("timestamp")]
     public long Timestamp { get; set; }
+}
+
+public class Rates
+{
+    [JsonPropertyName("USDXAU")]
+    public decimal PriceOunce24k { get; set; }
+
+    [JsonPropertyName("XAU")]
+    public decimal XauRate { get; set; }
 }

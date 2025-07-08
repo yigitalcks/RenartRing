@@ -45,7 +45,7 @@ public class GoldPriceService : IGoldPriceService
             {
                 _currentGoldPrice = new GoldPriceDto
                 {
-                    Price = response.PriceOunce24k / OunceToGram,
+                    Price = response.Rates.PriceOunce24k / OunceToGram,
                     LastUpdatedUtc = DateTimeOffset.FromUnixTimeSeconds(response.Timestamp).UtcDateTime
                 };
                 _logger.LogInformation(
